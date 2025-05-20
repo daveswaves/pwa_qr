@@ -1,33 +1,11 @@
 // Toggle between scan and generate modes
 function showMode(mode) {
   document.getElementById('scan-section').style.display = mode === 'scan' ? 'block' : 'none';
-  // document.getElementById('generate-section').style.display = mode === 'generate' ? 'flex' : 'none';
-
-  document.getElementById('generate-section').style.display = 'none';
-
-  if ('generate' === mode) {
-    document.getElementById('generate-section').style.display = 'flex';
-    document.getElementById('submit').style.display = 'none';
-    document.getElementById('qrcode').style.display = 'none';
-  }
-
-  document.getElementById('wifi-field').style.display = mode === 'generate-wifi' ? 'block' : 'none';
-  document.getElementById('url-field').style.display = mode === 'generate-url' ? 'block' : 'none';
-  document.getElementById('text-field').style.display = mode === 'generate-text' ? 'block' : 'none';
-
-  if ('block' === document.getElementById('wifi-field').style.display ||
-      'block' === document.getElementById('url-field').style.display ||
-      'block' === document.getElementById('text-field').style.display)
-  {
-    document.getElementById('submit').style.display = 'inline-block';
-    document.getElementById('qrcode').style.display = 'inline-block';
-
-    const canvas = document.getElementById('qrcode');
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // document.querySelector('[type="submit"]').style.display = 'block';
-  }
+  document.getElementById('generate-section').style.display = mode === 'generate' ? 'flex' : 'none';
+  
+  document.getElementById('generate-section-wifi').style.display = mode === 'generate-wifi' ? 'block' : 'none';
+  document.getElementById('generate-section-url').style.display = mode === 'generate-url' ? 'block' : 'none';
+  document.getElementById('generate-section-text').style.display = mode === 'generate-text' ? 'block' : 'none';
 }
 
 function parseWifiQr(text) {
@@ -92,14 +70,20 @@ html5QrCode.start(
 // Reusable escape function (special characters)
 const escape = (str) => str.replace(/([\\;:])/g, '\\$1');
 
+
+
 // WiFi QR Generator
-document.getElementById("qr-form").addEventListener("submit", function (e) {
+document.getElementById("wifi-form").addEventListener("submit", function (e) {
   e.preventDefault();
   const ssid = document.getElementById("ssid").value;
   const password = document.getElementById("password").value;
   const type = document.getElementById("encryption").value;
 
+  // Escape special characters
+  // const escape = (str) => str.replace(/([\\;:])/g, '\\$1');
   const wifiString = `WIFI:T:${type};S:${escape(ssid)};P:${escape(password)};;`;
+  // console.log(wifiString);
+  // const canvas = document.getElementById("qrcode");
 
   QRCode.toCanvas(document.getElementById("qrcode"), wifiString, {
     errorCorrectionLevel: 'M',
@@ -107,15 +91,16 @@ document.getElementById("qr-form").addEventListener("submit", function (e) {
     height: 300
   }, function (error) {
     if (error) console.error(error);
+    console.log("QR generated!");
   });
 });
 
 // URL QR generation
-document.getElementById("qr-form").addEventListener("submit", function (e) {
+document.getElementById("url-form").addEventListener("submit", function (e) {
   e.preventDefault();
   const url = document.getElementById("url").value;
 
-  QRCode.toCanvas(document.getElementById("qrcode"), url, {
+  QRCode.toCanvas(document.getElementById("url-qrcode"), url, {
     errorCorrectionLevel: 'M',
     width: 300,
     height: 300
@@ -125,11 +110,11 @@ document.getElementById("qr-form").addEventListener("submit", function (e) {
 });
 
 // Text QR generation
-document.getElementById("qr-form").addEventListener("submit", function (e) {
+document.getElementById("text-form").addEventListener("submit", function (e) {
   e.preventDefault();
   const text = document.getElementById("text").value;
 
-  QRCode.toCanvas(document.getElementById("qrcode"), text, {
+  QRCode.toCanvas(document.getElementById("text-qrcode"), text, {
     errorCorrectionLevel: 'M',
     width: 300,
     height: 300

@@ -4,7 +4,7 @@ body {
   background-color: #44296b;
   color: #fff;
   margin: 0;
-  padding: 20px;
+  padding: 10px;
 }
 p {
     font-size: 1.5rem;
@@ -25,17 +25,50 @@ p {
   margin-top: 20px;
 }
 
-button {
+.vw80 {width: 80vw;}
+.vw60 {width: 60vw;}
+
+[type="text"], [type="url"], select, label {
+  font-size: 1.4rem;
+}
+
+.btn {
   margin: 5px;
-  padding: 10px 15px;
-  font-size: 16px;
-  width: 80vw;
+  padding: 4px 8px;
+  font-size: 1.4rem;
+  
+  border-radius: 8px;
+  border: 1px solid #124;
+
+  align-items: center; /* vertically center content */
+  display: inline-flex;
+  gap: 8px; /* space between icon and text */
 }
 input, select {
-  padding: 8px;
-  width: 80%;
+  padding: 2px;
+  width: 80vw;
   margin: 5px 0;
 }
 form {
   margin-top: 20px;
+}
+
+.fs1_5rem {font-size: 1.5rem;}
+.fs2rem {font-size: 2rem;}
+
+#generate-section {
+  justify-content: space-between;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  /* width: 70vw; */
+}
+
+textarea {
+  width: 80vw;
+  height: 20vh;
+  font-size: 1.2rem;
+}
+
+#submit {
+  align-items:center;
 }
