@@ -1,0 +1,41 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #44296b;
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+}
+p {
+    font-size: 1.5rem;
+}
+#reader {
+  margin: auto;
+}
+#wifi-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+#scan-section {
+  margin-top: 20px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  width: 80vw;
+}
+input, select {
+  padding: 8px;
+  width: 80%;
+  margin: 5px 0;
+}
+form {
+  margin-top: 20px;
+}
