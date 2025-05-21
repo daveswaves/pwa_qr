@@ -21,12 +21,11 @@ function showMode(mode) {
   {
     document.getElementById('submit').style.display = 'inline-block';
     document.getElementById('qrcode').style.display = 'inline-block';
+    // document.querySelector('[type="submit"]').style.display = 'block';
 
     const canvas = document.getElementById('qrcode');
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // document.querySelector('[type="submit"]').style.display = 'block';
   }
 }
 
@@ -75,10 +74,35 @@ function onScanSuccess(decodedText) {
       <p>${decodedText}</p>
       ${decodedText.startsWith("http") ? `<a href="${decodedText}" target="_blank">Open Link</a>` : ""}
     `;
-    
-    // resultEl.textContent = `Scanned Text: ${decodedText}`;
   }
 }
+
+function fldType(arg) {
+  console.log(arg);
+  
+  if ('wifi' == arg) {
+    const ssid = document.getElementById("ssid").value;
+    const password = document.getElementById("password").value;
+    const type = document.getElementById("encryption").value;
+
+    const escape = (str) => str.replace(/([\\;:])/g, '\\$1');
+    return `WIFI:T:${type};S:${escape(ssid)};P:${escape(password)};;`;
+  }
+  else {
+    return document.getElementById(arg).value;
+  }
+}
+
+function makeCanvas(dataStr) {
+  QRCode.toCanvas(document.getElementById("qrcode"), dataStr, {
+    errorCorrectionLevel: 'M',
+    width: 300,
+    height: 300
+  }, (error) => {
+    if (error) console.error(error);
+  });
+}
+
 
 // Setup scanner
 const html5QrCode = new Html5Qrcode("reader");
@@ -89,51 +113,16 @@ html5QrCode.start(
   (error) => {} // silent on error
 );
 
-// Reusable escape function (special characters)
-const escape = (str) => str.replace(/([\\;:])/g, '\\$1');
-
-// WiFi QR Generator
+// QR Generator
 document.getElementById("qr-form").addEventListener("submit", function (e) {
   e.preventDefault();
-  const ssid = document.getElementById("ssid").value;
-  const password = document.getElementById("password").value;
-  const type = document.getElementById("encryption").value;
-
-  const wifiString = `WIFI:T:${type};S:${escape(ssid)};P:${escape(password)};;`;
-
-  QRCode.toCanvas(document.getElementById("qrcode"), wifiString, {
-    errorCorrectionLevel: 'M',
-    width: 300,  // Default: 200px
-    height: 300
-  }, function (error) {
-    if (error) console.error(error);
-  });
-});
-
-// URL QR generation
-document.getElementById("qr-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const url = document.getElementById("url").value;
-
-  QRCode.toCanvas(document.getElementById("qrcode"), url, {
-    errorCorrectionLevel: 'M',
-    width: 300,
-    height: 300
-  }, (error) => {
-    if (error) console.error(error);
-  });
-});
-
-// Text QR generation
-document.getElementById("qr-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const text = document.getElementById("text").value;
-
-  QRCode.toCanvas(document.getElementById("qrcode"), text, {
-    errorCorrectionLevel: 'M',
-    width: 300,
-    height: 300
-  }, (error) => {
-    if (error) console.error(error);
-  });
+  if ('block' === document.getElementById('wifi-field').style.display){
+    makeCanvas(fldType('wifi'));
+  }
+  else if ('block' === document.getElementById('url-field').style.display){
+    makeCanvas(fldType('url'));
+  }
+  else if ('block' === document.getElementById('text-field').style.display){
+    makeCanvas(fldType('text'));
+  }
 });
