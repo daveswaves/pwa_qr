@@ -11,7 +11,7 @@ function showMode(mode) {
     document.getElementById('qrcode').style.display = 'none';
   }
 
-  document.getElementById('wifi-field').style.display = mode === 'generate-wifi' ? 'block' : 'none';
+  document.getElementById('wifi-field').style.display = mode === 'generate-wifi' ? 'flex' : 'none';
   document.getElementById('url-field').style.display = mode === 'generate-url' ? 'block' : 'none';
   document.getElementById('text-field').style.display = mode === 'generate-text' ? 'block' : 'none';
 

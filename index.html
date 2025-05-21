@@ -27,11 +27,11 @@
 <body>
   <h1>QR Code App</h1>
 
-  <div>
+  <div style="display: flex; justify-content: space-between; padding: 0 10vw 0 10vw;">
     <!-- Camera -->
-    <button class="btn" onclick="showMode('scan')"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M12 17.5q1.875 0 3.188-1.312T16.5 13t-1.312-3.187T12 8.5T8.813 9.813T7.5 13t1.313 3.188T12 17.5m0-2q-1.05 0-1.775-.725T9.5 13t.725-1.775T12 10.5t1.775.725T14.5 13t-.725 1.775T12 15.5M4 21q-.825 0-1.412-.587T2 19V7q0-.825.588-1.412T4 5h3.15L9 3h6l1.85 2H20q.825 0 1.413.588T22 7v12q0 .825-.587 1.413T20 21zm0-2h16V7h-4.05l-1.825-2h-4.25L8.05 7H4zm8-6"/></svg> Scan QR Code</button>
+    <button class="btn vw34" onclick="showMode('scan')"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M12 17.5q1.875 0 3.188-1.312T16.5 13t-1.312-3.187T12 8.5T8.813 9.813T7.5 13t1.313 3.188T12 17.5m0-2q-1.05 0-1.775-.725T9.5 13t.725-1.775T12 10.5t1.775.725T14.5 13t-.725 1.775T12 15.5M4 21q-.825 0-1.412-.587T2 19V7q0-.825.588-1.412T4 5h3.15L9 3h6l1.85 2H20q.825 0 1.413.588T22 7v12q0 .825-.587 1.413T20 21zm0-2h16V7h-4.05l-1.825-2h-4.25L8.05 7H4zm8-6"/></svg> Scan</button>
     <!-- QR Code -->
-    <button class="btn" onclick="showMode('generate')"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M13 21v-2h2v2zm-2-2v-5h2v5zm8-3v-4h2v4zm-2-4v-2h2v2zM5 14v-2h2v2zm-2-2v-2h2v2zm9-7V3h2v2zM4.5 7.5h3v-3h-3zM3 9V3h6v6zm1.5 10.5h3v-3h-3zM3 21v-6h6v6zM16.5 7.5h3v-3h-3zM15 9V3h6v6zm2 12v-3h-2v-2h4v3h2v2zm-4-7v-2h4v2zm-4 0v-2H7v-2h6v2h-2v2zm1-5V5h2v2h2v2zM5.25 6.75v-1.5h1.5v1.5zm0 12v-1.5h1.5v1.5zm12-12v-1.5h1.5v1.5z"/></svg> Generate QR Code</button>
+    <button class="btn vw34" onclick="showMode('generate')"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M13 21v-2h2v2zm-2-2v-5h2v5zm8-3v-4h2v4zm-2-4v-2h2v2zM5 14v-2h2v2zm-2-2v-2h2v2zm9-7V3h2v2zM4.5 7.5h3v-3h-3zM3 9V3h6v6zm1.5 10.5h3v-3h-3zM3 21v-6h6v6zM16.5 7.5h3v-3h-3zM15 9V3h6v6zm2 12v-3h-2v-2h4v3h2v2zm-4-7v-2h4v2zm-4 0v-2H7v-2h6v2h-2v2zm1-5V5h2v2h2v2zM5.25 6.75v-1.5h1.5v1.5zm0 12v-1.5h1.5v1.5zm12-12v-1.5h1.5v1.5z"/></svg> Make</button>
   </div>
 
   <!-- SCAN MODE -->
@@ -48,9 +48,17 @@
 
   <form id="qr-form">
     <!-- WiFi fields -->
-    <div id="wifi-field" style="display: none;">
-      <label>SSID:<br/><input type="text" id="ssid" value="Wilmer WiFi" required /></label><br/>
-      <label>Password:<br/><input type="text" id="password" value="Hol3Farm!" required /></label><br/>
+    <div id="wifi-field" style="display: none; justify-content: center;">
+      <table>
+        <tr>
+          <td><input type="text" id="ssid" placeholder="SSID" required /></td>
+          <td><input type="text" id="password" placeholder="Password" required /></td>
+        </tr>
+      </table>
+      
+      <!--
+      <label>SSID:<br/><input type="text" id="ssid" value="Wilmer WiFi" required /></label>
+      <label>Password:<br/><input type="text" id="password" value="Hol3Farm!" required /></label>
       <label>Encryption:<br/>
         <select id="encryption">
           <option value="WPA">WPA/WPA2</option>
@@ -58,6 +66,7 @@
           <option value="nopass">None</option>
         </select>
       </label>
+      -->
     </div>
 
     <!-- URL fields -->

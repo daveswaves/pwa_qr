@@ -4,7 +4,7 @@ body {
   background-color: #44296b;
   color: #fff;
   margin: 0;
-  padding: 10px;
+  padding: 0;
 }
 p {
     font-size: 1.5rem;
@@ -27,6 +27,8 @@ p {
 
 .vw80 {width: 80vw;}
 .vw60 {width: 60vw;}
+.vw40 {width: 40vw;}
+.vw34 {width: 34vw;}
 
 [type="text"], [type="url"], select, label {
   font-size: 1.4rem;
@@ -46,7 +48,7 @@ p {
 }
 input, select {
   padding: 2px;
-  width: 80vw;
+  width: 38vw;
   margin: 5px 0;
 }
 form {
