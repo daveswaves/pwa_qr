@@ -6,16 +6,16 @@
   <title>QR Reader/Generator</title>
 
   <!-- PWA Manifest -->
-  <!-- <link rel="manifest" href="manifest.json" /> -->
-  <!-- <link rel="icon" href="icons/icon-192.png" /> -->
-  <!-- <meta name="theme-color" content="#2b2b2b" /> -->
+  <link rel="manifest" href="manifest.json" />
 
   <!-- PWA Service Worker -->
-  <!-- <script>
+  <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js');
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('Service Worker Registered'))
+        .catch(err => console.error('Service Worker registration failed:', err));
     }
-  </script> -->
+  </script>
 
   <!-- HTML5 QR Code -->
   <script src="js/html5-qrcode.min.js"></script>
